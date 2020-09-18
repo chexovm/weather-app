@@ -32,7 +32,7 @@ export default function Weather() {
   useEffect(() => {
     (async () => {
       let coords = await getLocation();
-      let weather = await fetch(`http://localhost:5000/`, {
+      let weather = await fetch(`/api/`, {
         method: "POST",
         body: JSON.stringify(coords),
         headers: {

@@ -8,7 +8,7 @@ const jsonParser = bodyParser.json();
 
 app.use(cors());
 
-app.post("/", jsonParser, async function (req, res) {
+app.post("/api/", jsonParser, async function (req, res) {
   let findWoeid = await fetch(
     `https://www.metaweather.com/api/location/search/?lattlong=${req.body.latitude},${req.body.longitude}`
   );
