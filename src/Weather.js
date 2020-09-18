@@ -32,7 +32,7 @@ export default function Weather() {
   useEffect(() => {
     (async () => {
       let coords = await getLocation();
-      let weather = await fetch(`/`, {
+      let weather = await fetch(`http://localhost:5000/`, {
         method: "POST",
         body: JSON.stringify(coords),
         headers: {
@@ -89,7 +89,7 @@ export default function Weather() {
           <ul className="weather-card__card-list">
             {forecast.consolidated_weather.slice(1).map((el, i) => (
               <li className="weather-card__card" key={el.id}>
-                <Card props={el} date={getDate(i++)} />
+                <Card props={el} date={getDate(i + 1)} /> 
               </li>
             ))}
           </ul>
