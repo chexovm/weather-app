@@ -1,15 +1,18 @@
 import express from "express";
 import cors from "cors";
+import path from "path"
 import bodyParser from "body-parser";
 import fetch from "node-fetch";
+let __dirname = path.resolve();
+let PORT = process.env.PORT || "5000"
 
 const app = express();
 const jsonParser = bodyParser.json();
 
 app.use(cors());
-app.use(express.static('build'));
-app.get('*', (req, res) => res.sendFile(path.resolve('build', 'index.html'));
 
+// ... other app.use middleware 
+app.use(express.static(path.join(__dirname, "client", "build")))
 
 app.post("/api/", jsonParser, async function (req, res) {
   let findWoeid = await fetch(
@@ -25,6 +28,10 @@ app.post("/api/", jsonParser, async function (req, res) {
   res.json(forecastResult);
 });
 
-app.listen(process.env.PORT || "5000", () => {
-  console.log(`Server is running on port ${process.env.PORT || 5000}`);
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+});
+
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });
