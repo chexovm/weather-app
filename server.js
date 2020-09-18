@@ -7,6 +7,9 @@ const app = express();
 const jsonParser = bodyParser.json();
 
 app.use(cors());
+app.use(express.static('build'));
+app.get('*', (req, res) => res.sendFile(path.resolve('build', 'index.html'));
+
 
 app.post("/api/", jsonParser, async function (req, res) {
   let findWoeid = await fetch(
