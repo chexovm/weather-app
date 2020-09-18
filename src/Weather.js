@@ -1,4 +1,3 @@
-import fetch from "node-fetch";
 import React, { useState, useEffect } from "react";
 import "./Weather.css";
 import Card from "./Card";
@@ -33,7 +32,7 @@ export default function Weather() {
   useEffect(() => {
     (async () => {
       let coords = await getLocation();
-      let weather = await fetch(`http://localhost:5000/`, {
+      let weather = await fetch(`/`, {
         method: "POST",
         body: JSON.stringify(coords),
         headers: {

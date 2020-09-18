@@ -16,7 +16,9 @@
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.3"
   },
+  "main":"server.js",
   "scripts": {
+    "server":"nodemon server.js",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
